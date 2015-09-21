@@ -6,7 +6,10 @@
   "dependencies": {
     "express": "^4.13.3",
     "path": "^0.12.7",
-    "react": "^0.13.3"
+    "react": "^0.13.3",
+    "react-redux": "^2.1.2",
+    "redux": "^3.0.0",
+    "redux-devtools": "^2.1.2"
   },
   "devDependencies": {
     "babelify": "^6.3.0",

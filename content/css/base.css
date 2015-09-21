@@ -19,11 +19,19 @@ body {
     font-family: arial, helvetica, sans-serif;
     padding: 1em;
     margin: 1em;
+}
+
+.box-gray {
     background-color: lightgray;
 }
 
+
 .box-floating {
     float: left;
+}
+
+.box-transparent {
+    background-color: transparent;
 }
 
 .box-skinny {
