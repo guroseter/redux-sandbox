@@ -4,7 +4,6 @@ var Contract = require('./Contract.jsx');
 
 module.exports = React.createClass({
 
-
     render: function() {
         var contractList = this.props.person.contracts.map(function(c){
             return (<li>
@@ -17,5 +16,4 @@ module.exports = React.createClass({
             <ul> {contractList} </ul>
         </div>
     }
-
 });

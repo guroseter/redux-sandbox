@@ -18,11 +18,8 @@ module.exports = React.createClass({
             );
         }.bind(this));
 
-
-
         return <ul>
                 {personListOut}
             </ul>
     }
-
 });

@@ -11,5 +11,4 @@ module.exports = React.createClass({
     render: function() {
         return <button className = "button" onClick={this.handleClick}> {this.props.person.name} </button>
     }
-
 });
