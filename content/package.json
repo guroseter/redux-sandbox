@@ -13,12 +13,15 @@
   },
   "devDependencies": {
     "babelify": "^6.3.0",
-    "browserify": "^11.1.0"
+    "browserify": "^11.1.0",
+    "watchify": "^3.4.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-js": "browserify -t [babelify] js/app.jsx > dist/bundle.js",
-    "build": "npm run build-js"
+    "build-js": "browserify -t [babelify] js/app.jsx > dist/bundle.js -d",
+    "build-js-watch": "watchify -t [babelify] js/app.jsx -o dist/bundle.js -d -v",
+    "build": "npm run build-js",
+    "build-watch": "npm run build-js-watch"
   },
   "keywords": [],
   "author": "",
