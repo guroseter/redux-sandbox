@@ -1,5 +1,6 @@
 body {
     background-color: #50c28c;
+    margin: 0;
 }
 
 .heading {
@@ -15,10 +16,16 @@ body {
     text-align: center;
 }
 
+.header {
+    background-color: black;
+    height: 3em;
+    padding: 1em;
+}
+
 .box {
     font-family: arial, helvetica, sans-serif;
-    padding: 1em;
     margin: 1em;
+    box-sizing: border-box;
 }
 
 .box-gray {
@@ -26,8 +33,12 @@ body {
 }
 
 
-.box-floating {
+.float-left {
     float: left;
+}
+
+.float-right {
+    float: right;
 }
 
 .box-transparent {
@@ -35,12 +46,12 @@ body {
 }
 
 .box-skinny {
-    width: 10em;
+    width: 20%;
 }
 
-
 .box-wide {
-    width: 30em;
+    width: 70%;
+    padding-left: 1em;
 }
 
 .button {

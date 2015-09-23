@@ -1,14 +1,15 @@
-var React = require('react');
+import React, { Component, PropTypes } from 'react';
+import * as UserActions from '../actions/user'
 
 
 module.exports = React.createClass({
 
-
-    handleClick: function() {
-        this.props.onPersonClick(this.props.person);
+    propTypes: {
+        logIn: PropTypes.func.isRequired
     },
 
     render: function() {
-        return <button className = "button" onClick={this.handleClick}> {this.props.person.name} </button>
+        const {logIn, person} = this.props;
+        return <button className = "button" onClick={() => logIn(person)}> {person.name} </button>
     }
 });

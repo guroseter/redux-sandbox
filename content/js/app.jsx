@@ -1,11 +1,14 @@
 var React = require('react');
+import { Provider } from 'react-redux';
+import App from './components/App.jsx';
+import configureStore from './store/configureStore';
 
-var App = require('./components/App.jsx');
-
-console.log('Hello')
+const store = configureStore();
 
 React.render(
-    <App />,
+    <Provider store = {store}>
+    {() => <App />}
+    </Provider>,
     document.getElementById('app')
 );
 

@@ -1,19 +1,21 @@
 var React = require('react');
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 
-var Person = require('./PersonListElement.jsx');
+import PersonListElement from './PersonListElement.jsx';
+import * as UserActions from '../actions/user'
 
 
-module.exports = React.createClass({
+const PersonList = React.createClass({
 
-    handlePersonClick: function(person) {
-        this.props.onPersonClick(person);
-    },
 
     render: function() {
+        const {personList, dispatch} = this.props;
+        const actions = bindActionCreators(UserActions, dispatch);
 
-        var personListOut = this.props.personList.map(function(p){
+        var personListOut = personList.map(function(p){
             return (<li className = "list-no-style">
-                <Person person = {p} onPersonClick = {this.handlePersonClick} ></Person>
+                <PersonListElement key={p.id} person = {p} logIn={actions.logIn}></PersonListElement>
             </li>
             );
         }.bind(this));
@@ -23,3 +25,9 @@ module.exports = React.createClass({
             </ul>
     }
 });
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators(UserActions, dispatch);
+}
+
+export default connect(mapDispatchToProps)(PersonList);

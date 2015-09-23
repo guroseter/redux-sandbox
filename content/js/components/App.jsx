@@ -1,7 +1,11 @@
-var React = require('react');
+import React, { Component, PropTypes } from 'react';
+import { bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+import * as UserActions from '../actions/user';
 
-var PersonList = require('./PersonList.jsx');
-var PersonLoggedIn = require('./PersonLoggedIn.jsx');
+import Header from './Header.jsx';
+import PersonList from './PersonList.jsx';
+import PersonLoggedIn from './PersonLoggedIn.jsx';
 
 var runeContracts = ['Eclipse Membership Contract', 'Super Expensive Hipster Coffeemaker Receipt '];
 var espenContracts = ['Eiendomsmegleravtale', 'Boligkontrakt', 'Altmuligmann-kontrakt'];
@@ -13,7 +17,7 @@ var anneContracts = [];
 
 var signeringsTeam = [
     { name: 'Rune', contracts: runeContracts},
-    { name: 'Joran', contracts: joranContracts},
+    { name: 'Jøran', contracts: joranContracts},
     { name: 'Guro', contracts: guroContracts},
     { name: 'Anne Berit', contracts: anneContracts},
     { name: 'Marius', contracts: mariusContracts},
@@ -21,35 +25,44 @@ var signeringsTeam = [
     { name: 'Sindre', contracts: sindreContracts}
 ];
 
+const App = React.createClass({
 
-module.exports = React.createClass({
-
-    getInitialState: function() {
-        return {
-            personLoggedIn: null,
-            personLoggedInName: ''
-        }
-    },
-
-    handlePersonClick: function(person){
-        this.setState({personLoggedIn: person});
-        this.setState({personLoggedInName: person.name})
+    propTypes : {
+        user: PropTypes.object.isRequired,
+        dispatch: PropTypes.func.isRequired
     },
 
     render: function() {
+
+        const {user, userName} = this.props;
+
         var personLoggedIn = null;
-        if (this.state.personLoggedIn !== null) {
-            personLoggedIn = <PersonLoggedIn person = {this.state.personLoggedIn}/>
+        if (user !== null) {
+            personLoggedIn = <PersonLoggedIn person = {user}/>
         }
         return <div>
-           <h1 className= "heading heading-center heading-white"> Velkommen til signeringsportalen, {this.state.personLoggedInName} </h1>
-           <div className="box box-floating box-skinny box-transparent">
-               <PersonList personList = {signeringsTeam} onPersonClick={this.handlePersonClick} />
+            <Header user={user}></Header>
+           <h1 className= "heading heading-center heading-white"> Velkommen til signeringsportalen, {userName} </h1>
+           <div className="box float-left box-skinny box-transparent">
+               <PersonList personList = {signeringsTeam} />
            </div>
-            <div className = "box box-floating box-wide box-gray">
+            <div className = "box float-left box-wide box-gray">
                 {personLoggedIn}
             </div>
         </div>
     }
-
 });
+
+function mapStateToProps(state){
+    var userName = '';
+    if (state.user !== null) {
+        userName = state.user.name;
+    }
+    return {
+        user: state.user,
+        userName
+    };
+}
+
+export default connect(mapStateToProps)(App);
+
