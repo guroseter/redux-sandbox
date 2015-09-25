@@ -12,7 +12,9 @@ const App = React.createClass({
 
     propTypes : {
         user: PropTypes.object.isRequired,
-        fetchUserList: PropTypes.func.isRequired
+        fetchUserList: PropTypes.func.isRequired,
+        users: PropTypes.array.isRequired,
+        isFetching: PropTypes.bool.isRequired
     },
 
     componentDidMount() {
@@ -22,11 +24,7 @@ const App = React.createClass({
 
     render: function() {
 
-        console.log(this.context);
-
-        const {user, userName, users} = this.props;
-        console.log('APP PROPERTIES');
-        console.log(this.props);
+        const {user, userName, users, isFetching} = this.props;
 
         var personLoggedIn = null;
         if (user !== null) {
@@ -35,11 +33,14 @@ const App = React.createClass({
         return <div>
             <Header user={user}></Header>
            <h1 className= "heading heading-center heading-white"> Velkommen til signeringsportalen, {userName} </h1>
-            {users.length > 0 &&
-                <div className="box float-left box-skinny box-transparent">
+            <div className="box float-left box-skinny box-transparent">
+                {isFetching && users.length === 0 &&
+                    <h2 className="heading">Laster brukere</h2>
+                }
+                {users.length > 0 &&
                     <PersonList personList = {users} />
-                </div>
-            }
+                }
+            </div>
             <div className = "box float-left box-wide box-gray">
                 {personLoggedIn}
             </div>
@@ -55,7 +56,8 @@ function mapStateToProps(state){
     return {
         user: state.user,
         userName,
-        users: state.users
+        users: state.users.items,
+        isFetching: state.users.isFetching
     };
 }
 

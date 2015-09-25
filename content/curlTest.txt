@@ -16,3 +16,10 @@
                                               -H "X-Parse-REST-API-Key: zRdDlnIYWfbRUIvljA9r8LrxnaxVtJvaALx3uelC"
                                               -H "Accept: application/json"
                                                https://api.parse.com/1/classes/users
+
+
+curl -X POST   -H "X-Parse-Application-Id: H6s6CpN4B9dGC0pb1uDqnH8rL0oz4bn2gyNsAI7X"
+-H "X-Parse-REST-API-Key: zRdDlnIYWfbRUIvljA9r8LrxnaxVtJvaALx3uelC"
+-H "Content-Type: application/json"
+-d '{"fnr":1111,"avsender":"NAV","oppdrag":"Foreldrepenger"}'
+https://api.parse.com/1/classes/oppdrag

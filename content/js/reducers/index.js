@@ -3,7 +3,10 @@ import {REQUEST_USER_LIST, RECEIVE_USER_LIST} from '../actions/user'
 import { combineReducers } from 'redux';
 
 const initialStateUser = null;
-const initialStateUsers = [];
+const initialStateUsers = {
+    isFetching: false,
+    items: []
+};
 
 export default function user(state = initialStateUser, action){
     switch (action.type) {
@@ -19,9 +22,14 @@ export default function user(state = initialStateUser, action){
 export default function users( state = initialStateUsers, action ) {
     switch (action.type){
         case RECEIVE_USER_LIST:
-            return action.users;
+            return Object.assign({}, state, {
+                items: action.users,
+                isFetching: false
+            });
         case REQUEST_USER_LIST:
-            return [];
+            return Object.assign({}, state, {
+                isFetching: true
+            });
         default:
             return state;
     }

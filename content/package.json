@@ -8,6 +8,7 @@
     "jQuery": "^1.7.4",
     "jquery": "^2.1.4",
     "jsdom": "^6.5.1",
+    "object-assign": "^4.0.1",
     "path": "^0.12.7",
     "react": "^0.13.3",
     "react-redux": "^2.1.2",

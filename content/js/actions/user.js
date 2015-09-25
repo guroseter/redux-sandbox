@@ -29,7 +29,7 @@ function receiveUserList(responseData){
 
 export function fetchUserList() {
     return dispatch => {
-        dispatch(requestUserList);
+        dispatch(requestUserList());
         return $.ajax({
             type: 'GET',
             headers: {
