@@ -10,6 +10,6 @@ module.exports = React.createClass({
 
     render: function() {
         const {logIn, person} = this.props;
-        return <button className = "button" onClick={() => logIn(person)}> {person.name} </button>
+        return <button className = "button" onClick={() => logIn(person)}> {person.fornavn} </button>
     }
 });
