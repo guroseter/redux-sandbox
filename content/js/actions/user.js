@@ -6,12 +6,32 @@ export const RECEIVE_USER_LIST = 'RECEIVE_USER_LIST';
 
 const API_ROOT = 'https://api.parse.com/1/classes/';
 
-export function logIn(person) {
-    return {type: types.LOG_IN, person };
+export function logIn(user) {
+    return {type: types.LOG_IN, user };
 }
 
 export function logOut() {
     return {type: types.LOG_OUT};
+}
+
+export function fetchContractsForUser(fnr) {
+    return {
+        types: [types.CONTRACT_LIST_REQUEST, types.CONTRACT_LIST_SUCCESS, types.CONTRACT_LIST_FAILURE],
+        callAPI: function () {
+            return $.ajax({
+                type: 'GET',
+                data: {where: `{"fnr":${fnr}}`},
+                headers: {
+                    'X-Parse-Application-Id': "H6s6CpN4B9dGC0pb1uDqnH8rL0oz4bn2gyNsAI7X",
+                    'X-Parse-REST-API-Key': "zRdDlnIYWfbRUIvljA9r8LrxnaxVtJvaALx3uelC",
+                    Accept: "application/json",
+                    'Content-Type': "application/json"
+                },
+                url: API_ROOT + 'oppdrag'
+            })
+        },
+        payload: {fnr}
+    }
 }
 
 function requestUserList(){

@@ -3,9 +3,9 @@ import { bindActionCreators} from 'redux';
 import { connect } from 'react-redux';
 import { loadUserList } from '../actions/user';
 
-import Header from './Header.jsx';
-import PersonList from './PersonList.jsx';
-import PersonLoggedIn from './PersonLoggedIn.jsx';
+import Header from '../components/Header.jsx';
+import UserList from '../components/UserList.jsx';
+import PersonLoggedIn from '../components/PersonLoggedIn.jsx';
 import { fetchUserList } from '../actions/user';
 
 const App = React.createClass({
@@ -24,26 +24,20 @@ const App = React.createClass({
 
     render: function() {
 
-        const {user, userName, users, isFetching} = this.props;
+        const {user, userName, users, isFetching, children} = this.props;
 
-        var personLoggedIn = null;
-        if (user !== null) {
-            personLoggedIn = <PersonLoggedIn person = {user}/>
-        }
         return <div>
             <Header user={user}></Header>
-           <h1 className= "heading heading-center heading-white"> Velkommen til signeringsportalen, {userName} </h1>
+           <h1 className= "heading heading-center heading-white"> Velkommen til signeringsportalen</h1>
             <div className="box float-left box-skinny box-transparent">
                 {isFetching && users.length === 0 &&
                     <h2 className="heading">Laster brukere</h2>
                 }
                 {users.length > 0 &&
-                    <PersonList personList = {users} />
+                    <UserList personList = {users} />
                 }
             </div>
-            <div className = "box float-left box-wide box-gray">
-                {personLoggedIn}
-            </div>
+            {children}
         </div>
     }
 });
