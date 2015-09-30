@@ -2,7 +2,6 @@ import {LOG_IN, LOG_OUT, RESET_ERROR_MESSAGE} from '../constants/ActionTypes';
 import {CONTRACT_LIST_SUCCESS, CONTRACT_LIST_REQUEST, CONTRACT_LIST_FAILURE} from '../constants/ActionTypes';
 import {REQUEST_USER_LIST, RECEIVE_USER_LIST} from '../actions/user'
 import { combineReducers } from 'redux';
-import paginate from './paginate'
 
 const initialStateUser = null;
 const initialStateUsers = {
